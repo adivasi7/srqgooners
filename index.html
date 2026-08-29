@@ -6,391 +6,169 @@
     <title>SRQ Gooners | Sarasota Arsenal FC Supporters</title>
     <style>
         :root {
-            --primary: #DB0007; /* Arsenal Red */
-            --secondary: #063672; /* Arsenal Blue */
-            --gold: #9C824A; /* Arsenal Gold accent */
+            --primary: #DB0007;
+            --secondary: #063672;
+            --gold: #9C824A;
             --dark: #111111;
             --light: #F8F9FA;
             --white: #FFFFFF;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
 
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        /* Navigation Header */
         header {
             background-color: var(--dark);
             border-bottom: 4px solid var(--primary);
             padding: 0.75rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
         }
 
         .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
-            text-decoration: none;
-        }
+        .logo-wrapper { display: flex; align-items: center; gap: 0.85rem; text-decoration: none; }
+        .logo-img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+        .logo-text { color: var(--white); font-size: 1.5rem; font-weight: 800; text-transform: uppercase; }
+        .logo-text span { color: var(--primary); }
+        .nav-links a { color: var(--white); text-decoration: none; margin-left: 1.5rem; font-weight: 600; }
+        .nav-links a:hover { color: var(--gold); }
 
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .logo-text {
-            color: var(--white);
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .logo-text span {
-            color: var(--primary);
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
-        /* Hero Section */
         .hero {
-            position: relative;
-            min-height: 75vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            position: relative; min-height: 60vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: linear-gradient(rgba(17, 17, 17, 0.45), rgba(219, 0, 7, 0.35)), 
                         url('otherimages/huddle-bg.jpg') center/cover no-repeat;
-            color: var(--white);
-            text-align: center;
-            padding: 8rem 1.5rem;
+            color: var(--white); text-align: center; padding: 6rem 1.5rem;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 0, 0, 0.6);
-        }
-
-        .hero p {
-            font-size: 1.35rem;
-            max-width: 700px;
-            margin: 0 auto 2.5rem auto;
-            font-weight: 600;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.6);
-        }
+        .hero h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 0 3px 8px rgba(0,0,0,0.8); }
+        .hero p { font-size: 1.35rem; max-width: 700px; font-weight: 600; text-shadow: 0 2px 6px rgba(0,0,0,0.8); }
 
         .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: var(--white);
-            padding: 1rem 2.2rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.05rem;
+            display: inline-block; background-color: var(--secondary); color: var(--white);
+            padding: 0.9rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 700;
             transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
+        .btn:hover { background-color: #04244d; transform: translateY(-2px); }
+        .btn-fb { background-color: #1877F2; margin-top: 1rem; }
+        .btn-fb:hover { background-color: #0d65d9; }
 
-        .btn:hover {
-            background-color: #04244d;
-            transform: translateY(-2px);
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 2.5rem; text-transform: uppercase; }
+        .section-title::after { content: ''; display: block; width: 50px; height: 4px; background-color: var(--primary); margin: 0.5rem auto 0; }
 
-        .btn-fb {
-            background-color: #1877F2;
-            margin-top: 1rem;
-        }
-
-        .btn-fb:hover {
-            background-color: #0d65d9;
-        }
-
-        /* Main Layout */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2.5rem;
-            color: var(--dark);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background-color: var(--primary);
-            margin: 0.5rem auto 0 auto;
-        }
-
-        /* Location Block */
         .location-card {
-            background: var(--white);
-            border-radius: 8px;
+            background: var(--white); border-radius: 8px; border-top: 5px solid var(--primary);
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2.5rem; margin-bottom: 4rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--primary);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            padding: 2.5rem;
-            margin-bottom: 4rem;
         }
 
-        .location-details h3 {
-            font-size: 1.6rem;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
+        .map-placeholder iframe { width: 100%; height: 100%; min-height: 280px; border: 0; border-radius: 6px; }
 
-        .location-details p {
-            margin-bottom: 0.75rem;
-        }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .grid-item { background-color: #ddd; border-radius: 8px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .grid-item:hover img { transform: scale(1.05); }
 
-        .address-text {
-            color: #444;
-            font-size: 1.05rem;
-            margin-bottom: 1rem !important;
-        }
+        .social-section { text-align: center; background: var(--white); padding: 3rem 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 
-        .badge {
-            display: inline-block;
-            background-color: #e8f4fe;
-            color: var(--secondary);
-            font-size: 0.85rem;
-            font-weight: 700;
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            margin-top: 1rem;
-        }
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 1000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); }
+        .modal-content { margin: auto; display: block; max-width: 90%; max-height: 80vh; border-radius: 6px; }
+        .close-modal { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
 
-        .map-placeholder {
-            background-color: #e9ecef;
-            border-radius: 6px;
-            overflow: hidden;
-            min-height: 280px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        footer { background-color: var(--dark); color: var(--white); text-align: center; padding: 2.5rem 1.5rem; border-top: 1px solid #222; }
+        footer a { color: var(--gold); text-decoration: none; }
 
-        .map-placeholder iframe {
-            width: 100%;
-            height: 100%;
-            min-height: 280px;
-            border: 0;
-        }
-
-        /* Photo Grid */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .grid-item {
-            background-color: #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            aspect-ratio: 4 / 3;
-            position: relative;
-        }
-
-        .grid-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .grid-item:hover img {
-            transform: scale(1.03);
-        }
-
-        /* Social Block */
-        .social-section {
-            text-align: center;
-            background: var(--white);
-            padding: 3rem 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            font-size: 0.95rem;
-            border-top: 1px solid #222;
-        }
-
-        footer a {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        footer p {
-            opacity: 0.8;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .location-card {
-                grid-template-columns: 1fr;
-            }
-            .hero {
-                min-height: 50vh;
-                padding: 4rem 1.5rem;
-            }
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .nav-links a {
-                margin: 0 0.75rem;
-            }
+            .location-card { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.2rem; }
+            .nav-container { flex-direction: column; gap: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
     <header>
         <div class="nav-container">
-            <a href="#" class="logo-wrapper">
+            <a href="index.html" class="logo-wrapper">
                 <img src="otherimages/logo.jpg" alt="SRQ Gooners Logo" class="logo-img">
                 <div class="logo-text">SRQ <span>Gooners</span></div>
             </a>
             <nav class="nav-links">
                 <a href="#location">Tiki Bar HQ</a>
-                <a href="#photos">Gallery</a>
+                <a href="gallery.html">Gallery</a>
                 <a href="#join">Facebook Group</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Banner -->
     <section class="hero">
         <h1>Sarasota Arsenal Supporters</h1>
         <p>The official home for Gunners fans in Sarasota, FL. Catch every match live with us under the palm trees.</p>
-        <a href="#location" class="btn">Find Our Matchday HQ</a>
     </section>
 
     <main class="container">
-        <!-- Location Block -->
         <section id="location">
             <h2 class="section-title">Official Matchday HQ</h2>
             <div class="location-card">
-                <div class="location-details">
-                    <h3>Hot Sands Oasis Tiki Bar & Grill</h3>
-                    <p class="address-text"><strong>Address:</strong> 600 N Beneva Rd, Sarasota, FL 34232</p>
-                    <p><strong>Official Sarasota Arsenal Supporters Bar</strong></p>
-                    <p>Join SRQ Gooners live for every Premier League, Champions League, and Cup matchday.</p>
-                    <p><strong>Atmosphere:</strong> Dedicated Arsenal match sound, cold drinks, great food, and pure Gunners energy.</p>
-                    <span class="badge">Sarasota Gooners Home Pitch</span>
+                <div>
+                    <h3 style="color: var(--secondary); font-size: 1.6rem;">Hot Sands Oasis Tiki Bar & Grill</h3>
+                    <p style="margin: 0.5rem 0 1rem;"><strong>Address:</strong> 600 N Beneva Rd, Sarasota, FL 34232</p>
+                    <p>Join SRQ Gooners live for every Premier League, Champions League, and Cup matchday with dedicated audio, cold drinks, and good food.</p>
                     <div style="margin-top: 1.5rem;">
                         <a href="https://maps.google.com/?q=Hot+Sands+Oasis+Tiki+Bar+and+Grill+600+N+Beneva+Rd+Sarasota+FL+34232" target="_blank" class="btn" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">Open in Google Maps ↗</a>
                     </div>
                 </div>
                 <div class="map-placeholder">
-                    <iframe 
-                        src="https://maps.google.com/maps?q=600%20N%20Beneva%20Rd,%20Sarasota,%20FL%2034232&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+                    <iframe src="https://maps.google.com/maps?q=600%20N%20Beneva%20Rd,%20Sarasota,%20FL%2034232&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- Matchday Photo Grid (Populated Automatically by GitHub Action) -->
-        <section id="photos">
-            <h2 class="section-title">Matchday Gallery</h2>
+        <!-- Latest Matchday Photos (Top 3) -->
+        <section id="photos" style="margin-bottom: 4rem;">
+            <h2 class="section-title">Latest Matchday Photos</h2>
             <!-- GALLERY_START -->
-<div id="photo-grid" class="photo-grid">
-    <div class="grid-item">
-        <img src="matchdayimages/778957985_1425901406257877_7636159168177965727_n.jpg" alt="SRQ Gooners Matchday">
-    </div>
-    <div class="grid-item">
-        <img src="matchdayimages/774815609_1421502953364389_2941223258452980479_n.jpg" alt="SRQ Gooners Matchday">
-    </div>
-    <div class="grid-item">
-        <img src="matchdayimages/710537345_1355888576592494_3343045660343955433_n.jpg" alt="SRQ Gooners Matchday">
-    </div>
-</div>
-<!-- GALLERY_END -->
+            <div id="photo-grid" class="photo-grid">
+                <!-- Auto-generated top 3 photos injected here -->
+            </div>
+            <!-- GALLERY_END -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="gallery.html" class="btn">View Full Gallery ➔</a>
+            </div>
         </section>
 
-        <!-- Facebook / Social Section -->
         <section id="join" class="social-section">
             <h2 class="section-title" style="margin-bottom: 1rem;">Connect With Us</h2>
-            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 1.5rem auto;">Follow our Facebook page for kickoff times, watch party announcements, group events, and live updates.</p>
+            <p style="max-width: 600px; margin: 0 auto 1.5rem;">Follow our Facebook page for kickoff times, watch party announcements, group events, and live updates.</p>
             <a href="https://www.facebook.com/srqgooners" target="_blank" class="btn btn-fb">Join SRQ Gooners on Facebook ↗</a>
         </section>
     </main>
 
-    <!-- Footer -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="imgExpanded">
+    </div>
+
     <footer>
         <p>&copy; SRQ Gooners. Sarasota's Unofficial Arsenal FC Supporters Group.</p>
         <p><a href="https://www.facebook.com/srqgooners" target="_blank">facebook.com/srqgooners</a></p>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("photo-grid").addEventListener("click", function(e) {
+                if (e.target.tagName === 'IMG') {
+                    document.getElementById("imageModal").style.display = "block";
+                    document.getElementById("imgExpanded").src = e.target.src;
+                }
+            });
+        });
+        function closeModal() { document.getElementById("imageModal").style.display = "none"; }
+    </script>
 </body>
 </html>
