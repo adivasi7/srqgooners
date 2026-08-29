@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'matchdayimages/**'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -22,54 +23,12 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Generate Gallery HTML
-        run: |
-          python -c "
-          import os, re, subprocess
-
-          img_dir = 'matchdayimages'
-          valid_exts = ('.jpg', '.jpeg', '.png', '.webp', '.gif')
-
-          if not os.path.exists(img_dir):
-              os.makedirs(img_dir)
-
-          files = [f for f in os.listdir(img_dir) if f.lower().endswith(valid_exts)]
-
-          # Sort photos by latest Git commit date (newest first)
-          def get_commit_time(file):
-              filepath = os.path.join(img_dir, file)
-              try:
-                  res = subprocess.check_output(['git', 'log', '-1', '--format=%ct', filepath]).decode().strip()
-                  return int(res) if res else os.path.getmtime(filepath)
-              except Exception:
-                  return os.path.getmtime(filepath)
-
-          files.sort(key=get_commit_time, reverse=True)
-
-          # Build HTML grid cards
-          grid_items = []
-          for img in files:
-              item = f'    <div class=\"grid-item\">\n        <img src=\"{img_dir}/{img}\" alt=\"SRQ Gooners Matchday\">\n    </div>'
-              grid_items.append(item)
-
-          gallery_html = '<div id=\"photo-grid\" class=\"photo-grid\">\n' + '\n'.join(grid_items) + '\n</div>'
-
-          # Replace HTML content between GALLERY comments
-          with open('index.html', 'r', encoding='utf-8') as f:
-              content = f.read()
-
-          pattern = r'<!-- GALLERY_START -->.*?<!-- GALLERY_END -->'
-          replacement = f'<!-- GALLERY_START -->\n{gallery_html}\n<!-- GALLERY_END -->'
-
-          new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
-
-          with open('index.html', 'w', encoding='utf-8') as f:
-              f.write(new_content)
-          "
+      - name: Run Gallery Script
+        run: python update_gallery.py
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update matchday gallery [newest first]" && git push)
+          git add index.html gallery.html
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update matchday gallery" && git push)
