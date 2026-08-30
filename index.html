@@ -88,19 +88,9 @@
         <!-- Latest Matchday Photos (Top 3) -->
         <section id="photos" style="margin-bottom: 4rem;">
             <h2 class="section-title">Latest Matchday Photos</h2>
-            <!-- GALLERY_START -->
-<div id="photo-grid" class="photo-grid">
-    <div class="grid-item">
-      <img src="matchdayimages/43erger.jpg" alt="SRQ Gooners Matchday" loading="lazy">
-    </div>
-    <div class="grid-item">
-      <img src="matchdayimages/5432.jpg" alt="SRQ Gooners Matchday" loading="lazy">
-    </div>
-    <div class="grid-item">
-      <img src="matchdayimages/1234.jpg" alt="SRQ Gooners Matchday" loading="lazy">
-    </div>
-</div>
-<!-- GALLERY_END -->
+            <div id="photo-grid" class="photo-grid">
+                <!-- Photos will be loaded here by JavaScript -->
+            </div>
             <div style="text-align: center; margin-top: 2rem;">
                 <a href="gallery.html" class="btn">View Full Gallery ➔</a>
             </div>
@@ -133,14 +123,51 @@
     </footer>
 
     <script>
+        // List of all photo filenames
+        const photoList = [
+            "778957985_1425901406257877_7636159168177965727_n.jpg",
+            "774815609_1421502953364389_2941223258452980479_n.jpg",
+            "710537345_1355888576592494_3343045660343955433_n.jpg",
+            "705420194_1350835740431111_9174764699566675002_n.jpg",
+            "706111992_1350825063765512_8225296266398926040_n.jpg",
+            "1234.jpg",
+            "123.jpg",
+            "43erger.jpg",
+            "5432.jpg"
+        ];
+
+        // Sort photos by filename in reverse order (newest first)
+        photoList.sort().reverse();
+
         document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("photo-grid").addEventListener("click", function(e) {
+            const photoGrid = document.getElementById("photo-grid");
+            
+            // Get only the 3 latest photos
+            const latestPhotos = photoList.slice(0, 3);
+            
+            // Create image elements and add to grid
+            latestPhotos.forEach(photo => {
+                const gridItem = document.createElement("div");
+                gridItem.className = "grid-item";
+                
+                const img = document.createElement("img");
+                img.src = `matchdayimages/${photo}`;
+                img.alt = "SRQ Gooners Matchday";
+                img.loading = "lazy";
+                
+                gridItem.appendChild(img);
+                photoGrid.appendChild(gridItem);
+            });
+
+            // Add click handler for modal
+            photoGrid.addEventListener("click", function(e) {
                 if (e.target.tagName === 'IMG') {
                     document.getElementById("imageModal").style.display = "block";
                     document.getElementById("imgExpanded").src = e.target.src;
                 }
             });
         });
+        
         function closeModal() { 
             document.getElementById("imageModal").style.display = "none"; 
         }
